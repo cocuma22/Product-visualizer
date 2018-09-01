@@ -7,14 +7,14 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" href="../lib/style.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="../lib/jQuery.min.js"></script>
-		<script src="../lib/bootstrap.min.js"></script>
+		<script src="lib/jQuery.min.js"></script>
+		<script src="lib/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<script src="../lib/three.min.js"></script>
-		<script src="../lib/OrbitControls.js"></script>
-		<script src="../lib/GLTFLoader.js"></script>
-		<script src="../lib/TGALoader.js"></script>
+		<script src="lib/three.min.js"></script>
+		<script src="lib/OrbitControls.js"></script>
+		<script src="lib/GLTFLoader.js"></script>
+		<script src="lib/TGALoader.js"></script>
 
 
 
@@ -354,7 +354,7 @@
 
 
 			//load EM------------------------------------------------------------
-			var path = '../textures/cubemap/';
+			var path = 'textures/cubemap/';
 			var format = '.jpg';
 			var textureCube = new THREE.CubeTextureLoader().load( [
 				path + 'posx' + format, path + 'negx' + format,
@@ -567,7 +567,7 @@
 
 				//load model
 				var loader = new THREE.GLTFLoader();
-				loader.load( '../guitar/scene.gltf', function ( gltf ) {
+				loader.load( 'guitar/scene.gltf', function ( gltf ) {
 
 					gltf.scene.traverse( function ( child ) {
 						if ( child.isMesh ) {
