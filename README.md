@@ -1,63 +1,64 @@
 # Guitar 3D Visualizer - Report
 
-## Descrizione generale
-Per la realizzazione del *Product Visualizer*, ho deciso di mantenere un layout semplice contenente solo l'essenziale, mi sono quindi ispirata a questa [demo 3D](https://threekit.com/3d-product-demos/mens-polo-shirt-clothing/).
+## General description
+For the realization of the *Product Visualizer*, I kept a simple layout containing only the essencial staff. I was inspired by this [3D demo](https://threekit.com/3d-product-demos/mens-polo-shirt-clothing/).
 
-Il modello scelto è una [chitarra elettrica](https://sketchfab.com/models/7ab6e59ba93b46bd8afa981fef92f114) in cui è possibile modificare il tipo di legno del corpo e il metallo di alcune sue componenti.
+The chosen model is an [electric guitar](https://sketchfab.com/models/7ab6e59ba93b46bd8afa981fef92f114) in which it is possible modify the type of wood of the body and the metal of some of its components. 
 
-I file utilizzati sono i seguenti: 
-- **index.html**: è il file principale, contiene il codice di tutto il progetto.
-- **modello**:
-	- **scene.gltf**: contiene il modello della chitarra elettrica.
-- **librerie**:
-	- **GLTFLoader.js**: loader per modelli in formato glTF
-	- **TGALoader.js**: loader per texture in formato TGA
+The files used are the following: 
+- **index.html**: the main file, it contains the code of the whole project.
+- **model**:
+	- **scene.gltf**: it contains the model of the electric guitar.
+- **libraries**:
+	- **GLTFLoader.js**: loader for models in glTF format
+	- **TGALoader.js**: loader for textures in TGA format
 	- **OrbitControls.js**
 	- **three.min.js**
-- **texture**: 
-	- **cubemap**: utilizzata come environment map ([http://www.humus.name/index.php?page=Cubemap&item=Yokohama](http://www.humus.name/index.php?page=Cubemap&item=Yokohama)).
-	- **materiali**: i diversi tipi di legno sono stati presi dal sito [https://www.gametextures.com](https://www.gametextures.com).
+- **textures**:
+	- **cubemap**: used as [environment map](http://www.humus.name/index.php?page=Cubemap&item=Yokohama).
+	- **materials**: the different types of wood were taken from the site [https://www.gametextures.com](https://www.gametextures.com).
 
-## Scelte progettuali
-Per ottenere materiali più realistici, ho utilizzato una cubemap come environment map ma, volendo mantenere uno stile pulito della pagina web, e visto il tipo di modello scelto come soggetto, ho deciso di mantenere lo sfondo bianco invece di mostrare la cubemap adoperata. Per tale ragione, non ho applicato IEM perché i colori delle riflessioni sul modello sarebbero risultati "errati".
+## Design choices
+To obtain more realistic materials, I used a cubemap as environment map but, wanting to keep a clean style of the web page, and given the type of model chosen as subject, I kept the white background insead of showing the cubemap used. For this reason, I did not apply IEM because the reflections on the model would have been "wrong".
 
-### Scelta dei materiali
-Nel *Product Visualizer* ho deciso di rendere personalizzabile solo alcuni materiali della chitarra:
-- corpo: è possibile scegliere il tipo di *legno* tra mogano, ebano e palissandro;
-- parti metalliche: riguardano principalmente meccaniche, capotasto, tastiera, pickup, ponte e tremolo; si può scegliere il tipo di *metallo* tra platino, rame, oro e argento.
+## Materials
+In the *Product Visualizer* only some guitar materials are customazible: 
+- body: you can choose the type of *wood* between mahogany, ebony and rosewood;
+- metallic parts: they mainly concern mechanics, nut, pickups and bridge; you can choose the type of *metal* between platinum, copper, gold and silver.
 
-Per il resto della chitarra ho utilizzato i seguenti materiali: 
-- *plastica* per le manopole;
-- *cromo* per i tasti;
-- *nickel* per le corde;
-- *metallo nero* per alcune parti del ponte.
+For the rest of the guitar I used the following materials: 
+- *plastic* for the knobs
+- *chrome* for frets
+- *nickel* for the strings 
+- *black metal* for some parts of the bridge.
 
-Il modello scelto possiede una mappatura delle UV solo nella parte anteriore e posteriore del corpo della chitarra. Al manico e al bordo del corpo, non essendo mappati, non ho potuto applicare delle texture per simulare un materiale complesso; ho quindi deciso di utilizzare un materiale diffusivo opaco.
+The model chosen has an UV mapping only on the front and back of the guitar body. Indeed at the neck and at the edge of the guitar body, I could not apply textures to simulate a complex material; so I decided to use an opaque diffusive material. 
 
-### Scelta delle BRDF
-Per la realizzazione dei materiali sono state utilizzate le equazioni illustrate durante il corso. Nello specifico, i materiali sono stati realizzati con le seguenti tecniche: 
-- legno: diffuse map, specular map, roughness map e normal map.
-- metallo: specular reflection (utilizzata environment map e scelto livello mipmap da usare in base alla roughness).
-- plastica: combinazione di BRDF Lambertiana e BRDF Cook-Torrance.
-- lambert: BRDF Lambertiana.
+## BRDF
+The materials were made using the following techniques:
+- wood: diffuse map, specular map, roughness map and normal map
+- metal: specular reflection (used environment map and chosen mipmap layer to use based on roughness)
+- plastic: combination of Lambertian BRDF and Cook-Torrance BRDF
+- lambert: Lambertian BRDF.
 
-### Scelta del tipo di illuminazione
-Per quanto riguarda l'illuminazione della scena, ho deciso di utilizzare tre `PointLight` disposte nel seguente modo: 
-1. Luce frontale: `(0.0, 0.00, 6.0)`
-2. Luce posteriore destra: `(8.0, 4.0, -6.0)`
-3. Luce posteriore sinistra: `(-8.0, 4.0, -6.0)`
+## Lighting
+I used three `PointLight` arranged in the following way:
+1. front light: `(0.0, 0.00, 6.0)`
+2. right back light: `(8.0, 4.0, -6.0)`
+3. left back light: `(-8.0, 4.0, -6.0)` 
 
-### Svolgimento del progetto
-Il progetto è stato svolto seguendo i seguenti passi: 
-- ricerca e scelta del modello su [Sketchfab](https://sketchfab.com/);
-- inserimento della cubemap;
-- stesura degli shader per i materiali; 
-- creazione del form per la personalizzazione dei materiali;
-- aggiunta di materiali alternativi selezionabili tramite il form;
-- aggiunta delle luci;
-- creazione del layout della pagina web utilizzando [Bootstrap](http://getbootstrap.com);
-- correzione dei materiali e della posizione delle luci.
+## Project development
+The project is developed executing the following steps:
+- research and model selection in [Sketchfab](https://sketchfab.com/)
+- insertion of the cubemap
+- writing shaders for materials
+- creation of the form for the personalization of materials 
+- added addictional materials selectable via the form
+- insertion of lights
+- creation of web page layout using [Bootstrap](http://getbootstrap.com)
+- correction of materials and position of lights. 
 
-## Risultato
+## Result
+[Link final result](https://cocuma22.github.io/Product-visualizer/)
 ![Immagine di default](textures/img/default.png)
 ![Immagine custom](textures/img/customized.png)
